@@ -1,23 +1,23 @@
-  # Python                                  
-  __pycache__/                                                           
-  *.py[cod]                       
-  *.egg-info/                         
-  build/
-  dist/
-  .pytest_cache/
-  .coverage
+# Python                                  
+__pycache__/                                                           
+*.py[cod]                       
+*.egg-info/                         
+build/
+dist/
+.pytest_cache/
+.coverage
 
-  # Virtual environments
-  .venv/
-  venv/
+# Virtual environments
+.venv/
+venv/
 
-  # IDEs / OS
-  .vscode/
-  .idea/
-  .DS_Store
+# IDEs / OS
+.vscode/
+.idea/
+.DS_Store
 
-  # Project-specific data (live data ignored; sample fixture committed)  
-  data/q_state.json                                           
-  data/ratings.csv                          
-  data/sessions.csv                                                      
-  data/queue.json 
+# Project-specific data (live data ignored; sample fixture committed)  
+data/q_state.json                                           
+data/ratings.csv                          
+data/sessions.csv                                                      
+data/queue.json 
