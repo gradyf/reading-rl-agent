@@ -23,8 +23,8 @@ def source_category(article):
         return "longform-mag"
     return None
 
-def recency_bucket(article, date: date):
-    date_diff = (date - article["added"]).days
+def recency_bucket(article, today: date):
+    date_diff = (today - article["added"]).days
 
     if date_diff <= 7:
         return "fresh"
@@ -33,11 +33,11 @@ def recency_bucket(article, date: date):
     else:
         return "stale"
 
-def article_to_action_tuple(article,date):
+def article_to_action_tuple(article,today):
     category = category_bucket(article)
     length = length_bucket(article)
     source = source_category(article)
-    recency = recency_bucket(article, date)
+    recency = recency_bucket(article, today)
 
     return (category, length, source, recency)
 
