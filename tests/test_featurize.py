@@ -1,6 +1,7 @@
+import pytest
 from datetime import date
+import reading_rl.featurize as feat
 
-from reading_rl.featurize import article_to_action_tuple
 
 def test_happy_path_atlantic_article_5_days_ago():
     article = {
@@ -12,6 +13,32 @@ def test_happy_path_atlantic_article_5_days_ago():
 
     today = date(2026,4,6)
 
-    result = article_to_action_tuple(article,today)
+    result = feat.article_to_action_tuple(article,today)
 
     assert result == ("ai","long","longform-mag","fresh")
+
+@pytest.mark.parametrize("word_count, expected", [
+    (1, "short"),
+    (500, "short"),
+    (749, "short"),
+    (750, "short"),
+    (751, "medium"),
+    (1500, "medium"),
+    (1501, "long"),
+    (99999, "long")
+])
+def test_length_bucket_threshold(word_count, expected):
+    assert feat.length_bucket({"word_count": word_count}) == expected
+
+
+@pytest.mark.parametrize("added_date, today, expected", [
+    (date(2026,4,1),date(2026,4,7),"fresh"),
+    (date(2026,4,1),date(2026,4,8),"fresh"),
+    (date(2026,4,1),date(2026,4,9),"aged"),
+    (date(2026,4,1),date(2026,4,15),"aged"),
+    (date(2026,4,1),date(2026,4,30),"aged"),
+    (date(2026,4,1),date(2026,5,1),"aged"),
+    (date(2026,4,1),date(2026,5,2),"stale"),
+])
+def test_recency_bucket(added_date, today, expected):
+    assert feat.recency_bucket({"added":added_date},today) == expected
