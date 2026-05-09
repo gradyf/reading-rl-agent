@@ -53,3 +53,28 @@ def test_happy_path_state_tuple():
     result = feat.state_to_tuple(remaining_min, last_topic, articles_read)
 
     assert result == ("med",None,3)
+
+@pytest.mark.parametrize("remaining_min, expected", [
+    (1,"short"),
+    (9,"short"),
+    (10,"short"),
+    (11,"med"),
+    (15,"med"),
+    (24,"med"),
+    (25,"med"),
+    (26,"long"),
+    (9999,"long")
+])
+def test_remaining_min_bucket(remaining_min,expected):
+    assert feat.budget_bucket(remaining_min) == expected
+
+@pytest.mark.parametrize("articles_read, expected", [
+    (0,0),
+    (1,1),
+    (2,2),
+    (3,3),
+    (4,3),
+    (9999,3)
+])
+def test_articles_read_counter(articles_read,expected):
+    assert feat.articles_read_counter(articles_read) == expected
