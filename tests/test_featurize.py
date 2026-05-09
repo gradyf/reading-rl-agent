@@ -42,3 +42,14 @@ def test_length_bucket_threshold(word_count, expected):
 ])
 def test_recency_bucket(added_date, today, expected):
     assert feat.recency_bucket({"added":added_date},today) == expected
+
+
+def test_happy_path_state_tuple():
+
+    remaining_min = 15
+    last_topic = None
+    articles_read = 15
+
+    result = feat.state_to_tuple(remaining_min, last_topic, articles_read)
+
+    assert result == ("med",None,3)
