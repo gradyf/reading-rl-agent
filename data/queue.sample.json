@@ -1,0 +1,30 @@
+[
+    {
+    "path": "raw/test-file-1.md",
+    "title": "Test AI Article #1",                                                               
+    "topic": "ai",
+    "word_count": 7581,                                                           
+    "source_url": "https://nytimes.com/ai-test-article-1",           
+    "added": "2026-05-01",                                                        
+    "status": "unread"
+    },
+    {
+    "path": "raw/test-file-2.md",
+    "title": "Test Urbanism Article #1",                                                               
+    "topic": "urbanism",
+    "word_count": 124,                                                           
+    "source_url": "https://theatlantic.com/urbanism-test-article-1",           
+    "added": "2026-04-22",                                                        
+    "status": "unread"
+    },
+    {
+    "path": "raw/test-file-3.md",
+    "title": "History of Iran",                                                               
+    "topic": "iran-war",
+    "word_count": 124,                                                           
+    "source_url": "https://wikipedia.org/history-of-iran-1",           
+    "added": "2026-05-10",                                                        
+    "status": "reference"
+    }
+    
+]
